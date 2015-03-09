@@ -1,9 +1,37 @@
 set nocompatible
 
+" vundle
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'Raimondi/delimitMate'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'bling/vim-airline'
+Plugin 'fatih/vim-go'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'godlygeek/tabular'
+Plugin 'gregsexton/MatchTag'
+Plugin 'groenewege/vim-less'
+Plugin 'henrik/vim-indexed-search'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'sjl/gundo.vim'
+Plugin 'tmhedberg/matchit'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sleuth'
+Plugin 'yssl/QFEnter'
+
+call vundle#end()
+
 syntax on
-filetype plugin on
-filetype indent on
-autocmd BufRead,BufNewFile *.py filetype plugin off
+filetype plugin indent on
 
 set autoindent
 set showmode
@@ -17,7 +45,7 @@ set backspace=2
 set hlsearch
 set textwidth=100
 set formatoptions=nqro
-set bg=dark
+colorscheme tchaba2
 
 " Undo file.
 set undofile
@@ -59,23 +87,12 @@ noremap <C-P> "+p
 
 nnoremap <space><space> vip:sort<cr>
 
-noremap <space>: :sort<cr>gv:Tabularize /:<cr>gv:s/ :/:/g<cr>:nohl<cr>
-noremap <space>= :Tabularize /=<cr>
-
-map <c-f> :call JsBeautify()<cr>
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+noremap <space>: :sort<cr>gv:Tabularize /:<cr>gv:s/ :/:/g<cr>:noh<cr>
+noremap <space>= :Tabularize /^[^=]*\zs=<cr>
 
 
 " Make Y work like D.
 nnoremap Y y$
-
-" Create newlines in normal mode.
-nnoremap <cr> o<esc>
-
-" Pathogen fun.
-call pathogen#infect()
 
 " NERDTree.
 noremap <C-n> :NERDTreeToggle<cr>
@@ -85,6 +102,8 @@ let g:NERDTreeDirArrows=0
 let mapleader = ","
 let g:NERDSpaceDelims = 1
 let g:syntastic_debug = 0
+
+let g:ctrlp_max_height = 20
 
 " Bash style completion.
 set wildmode=list:longest
@@ -102,3 +121,44 @@ cab VS vs
 cab Qa qa
 cab QA qa
 cab t Tabularize
+
+" grep fun
+cab gg Ggrep!
+autocmd QuickFixCmdPost *grep* cwindow
+autocmd FileType qf wincmd J
+
+function Ext()
+  return expand("%:e")
+endfunction
+
+function SimpleFind()
+  return 'Ggrep! "' . @" . '" -- "*.' . Ext() . '"'
+endfunction
+
+function FindDefinition()
+  let text=@""
+  return 'Ggrep! -e "\(def\|class\) ' . text . '\b" -e "\b' . text . '\b\s\+=" -e "\(factory\|service\|directive\|controller\) ''' . text . '''" -- "*.' . Ext() . '"'
+endfunction
+
+vnoremap <C-f> y:<C-r>=SimpleFind()<cr><cr><cr>gv
+nnoremap <C-f> yiw:<C-r>=SimpleFind()<cr><cr><cr>
+vnoremap <C-g> y:<C-r>=FindDefinition()<cr><cr><cr>gv
+nnoremap <C-g> yiw:<C-r>=FindDefinition()<cr><cr><cr>
+
+" vim-airline
+set laststatus=2
+set noshowmode
+let g:airline_theme='raven'
+
+" tagbar
+" nnoremap <C-i> :TagbarToggle<cr>
+
+" gundo
+let g:gundo_preview_bottom=1
+
+if &term =~ '256color'
+  " disable Background Color Erase (BCE) so that color schemes
+  " render properly when inside 256-color tmux and GNU screen.
+  " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
+  set t_ut=
+endif

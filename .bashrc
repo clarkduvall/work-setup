@@ -76,7 +76,6 @@ function hash_str {
   echo $sum
 }
 
-
 # Source some git things.
 source ~/.git-completion.bash
 source ~/.git-prompt.sh
