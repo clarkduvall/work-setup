@@ -2,8 +2,9 @@
 
 ## Install
 
-    git submodule init
-    git submodule update
+    git submodule update --init --recursive
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
     vim +PluginInstall +qall
 
 Then copy all the files into your home directory.

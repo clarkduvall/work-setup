@@ -2,6 +2,7 @@ set nocompatible
 
 " vundle
 filetype off
+set rtp+=~/.fzf
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -17,13 +18,13 @@ Plugin 'gregsexton/MatchTag'
 Plugin 'groenewege/vim-less'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sjl/gundo.vim'
 Plugin 'tmhedberg/matchit'
+Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sleuth'
 Plugin 'yssl/QFEnter'
@@ -162,3 +163,11 @@ if &term =~ '256color'
   " see also http://snk.tuxfamily.org/log/vim-256color-bce.html
   set t_ut=
 endif
+
+nnoremap <silent> <leader><cr> :call fzf#run({
+\   'down': '40%',
+\   'sink': 'vertical split' })<cr>
+nnoremap <silent> <leader><space> :call fzf#run({
+\   'down': '40%',
+\   'sink': 'sp' })<cr><c-w>=
+nnoremap <silent> <c-p> :FZF<cr>
