@@ -50,6 +50,8 @@ set backspace=2
 set hlsearch
 set textwidth=100
 set formatoptions=nqro
+set incsearch
+set scrolloff=1
 colorscheme tchaba2
 
 " Undo file.
