@@ -18,6 +18,7 @@ Plugin 'gregsexton/MatchTag'
 Plugin 'groenewege/vim-less'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'kchmck/vim-coffee-script'
+Plugin 'kshenoy/vim-signature'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
@@ -120,7 +121,6 @@ cab Vs vs
 cab VS vs
 cab Qa qa
 cab QA qa
-cab t Tabularize
 
 " grep fun
 cab gg Ggrep!
