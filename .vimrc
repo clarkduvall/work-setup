@@ -27,7 +27,9 @@ Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-sleuth'
+Plugin 'tpope/vim-surround'
 Plugin 'yssl/QFEnter'
 
 call vundle#end()
