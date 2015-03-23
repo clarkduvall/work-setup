@@ -19,11 +19,11 @@ Plugin 'groenewege/vim-less'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'majutsushi/tagbar'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'sjl/gundo.vim'
 Plugin 'tmhedberg/matchit'
+Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-sleuth'
@@ -101,7 +101,6 @@ let g:NERDTreeDirArrows=0
 
 " For NERDCommenter.
 let mapleader = ","
-let g:NERDSpaceDelims = 1
 let g:syntastic_debug = 0
 
 let g:ctrlp_max_height = 20
